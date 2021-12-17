@@ -1,617 +1,166 @@
-// ignore_for_file: unused_import
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/svg.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+TextEditingController _controllerNmae = TextEditingController();
+TextEditingController _controllerEmail = TextEditingController();
+TextEditingController _controllerPassword = TextEditingController();
+TextEditingController _controllerPassword2 = TextEditingController();
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+    // double w = MediaQuery.of(context).size.width;
+    // double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Row(
+        body: ListView(
+      scrollDirection: Axis.vertical,
+      children: [
+        Center(
+          child: Column(
             children: [
+              // Start Logo Container
               Container(
-                margin: const EdgeInsets.only(top: 62, left: 20),
-                width: w - 160,
-                height: 33,
+                margin: const EdgeInsets.only(top: 112),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.black26),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.lightBlueAccent,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Row(
-                    children: const [
-                      Icon(Icons.search),
-                      Text(
-                        'search product',
-                        style: TextStyle(color: Colors.black12),
-                      )
-                    ],
-                  ),
-                ),
+                child: SvgPicture.asset('assets/icons/logo.svg'),
               ),
+              // End Logo Container
+
+              // Start Text Container
               Container(
-                margin: const EdgeInsets.only(top: 62, left: 20),
-                width: 34,
-                height: 33,
-                child: const Icon(Icons.favorite_border),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  // border: Border.all(color: Colors.black26),
+                margin: const EdgeInsets.only(top: 16),
+                child: const Text(
+                  'Let’s Get Started',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
+              // End Text Container
+
+              // Start Bio Container
               Container(
-                margin: const EdgeInsets.only(top: 62, left: 20),
-                width: 34,
-                height: 33,
-                child: const Icon(Icons.notifications_outlined),
+                margin: const EdgeInsets.only(top: 8),
+                child: const Text(
+                  'Create an new account',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+              // End Bio Container
+
+              // Start Input Email Conatiner
+              Container(
+                margin: const EdgeInsets.only(top: 28),
+                width: 343,
+                height: 48,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  // border: Border.all(color: Colors.black26),
+                  border: Border.all(
+                    color: const Color(0xFFEBF0FF),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              ),
-            ],
-          ),
-          // Start Bnaner container
-          Container(
-            margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
-            width: w,
-            height: 206,
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                image: AssetImage("assets/images/banner.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Stack(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: 24,
-                    top: 32,
-                  ),
-                  child: Text(
-                    'Super Flash Sale ',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: 24,
-                    top: 60,
-                  ),
-                  child: Text(
-                    '50% Off',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(left: 24, top: 133),
-                          width: 41,
-                          height: 42,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 6, top: 8),
-                            child: Text(
-                              '08',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    SvgPicture.asset("assets/icons/User.svg"),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: _controllerNmae,
+                        decoration: const InputDecoration(
+                          hintText: "Full Name",
+                          border: InputBorder.none,
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 12, top: 133),
-                          width: 41,
-                          height: 42,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 6, top: 8),
-                            child: Text(
-                              '34',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 12, top: 133),
-                          width: 41,
-                          height: 42,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 6, top: 8),
-                            child: Text(
-                              '53',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          // End Bnaner container
-          Column(
-            children: [
-              Row(children: const [
-                SizedBox(
-                  height: 48,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 16),
-                  child: Text(
-                    'Category',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
+              ),
+              // End Input Email Conatiner
+
+              // Start Input Password Conatiner
+
+              Container(
+                margin: const EdgeInsets.only(top: 28),
+                width: 343,
+                height: 48,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0xFFEBF0FF),
                   ),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Text(
-                    'More Category',
-                    style: TextStyle(
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    SvgPicture.asset("assets/icons/Password.svg"),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: _controllerPassword,
+                        decoration: const InputDecoration(
+                          hintText: "Password",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // End Input Password Conatiner
+
+              // Start Input Password Conatiner
+
+              GestureDetector(
+                onTap: () {
+                  print(_controllerNmae.text);
+                  print(_controllerEmail.text);
+                  print(_controllerPassword.text);
+                  print(_controllerPassword2.text);
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 28),
+                  width: 343,
+                  height: 57,
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Sig in',
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: Colors.lightBlueAccent),
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
-              ]),
-              Column(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: SizedBox(
-                      height: 120,
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 16),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  FontAwesomeIcons.python,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('python')
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 12),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  FontAwesomeIcons.js,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('javascript')
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 12),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  FontAwesomeIcons.html5,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('html5')
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 12),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  FontAwesomeIcons.css3,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('css3')
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 12),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  FontAwesomeIcons.android,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('android')
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 12),
-                                width: 70,
-                                height: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.shopping_cart,
-                                  color: Color(0xFF40BFFF),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text('data')
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
               )
+              // End Input Sig nn Conatiner
             ],
           ),
-          const SizedBox(
-            height: 24,
-          ),
-          Row(children: const [
-            Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: Text(
-                'Flash Sale',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(right: 16),
-              child: Text(
-                'See More',
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.lightBlueAccent),
-              ),
-            ),
-          ]),
-          const SizedBox(
-            height: 12,
-          ),
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    Container(
-                      width: 145,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              'assets/images/banner.png',
-                              height: 109,
-                              width: 109,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            'FS-Nike Air',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const Text(
-                            'Max 270 React...',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "\$299,43",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF40BFFF)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: const [
-                              Text(
-                                '\$543.33',
-                                style: TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                  color: Color(0xFF9098B1),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                '24% off',
-                                style: TextStyle(color: Color(0xFFFB7181)),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Container(
-                      width: 145,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              'assets/images/banner.png',
-                              height: 109,
-                              width: 109,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            'FS-Nike Air',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const Text(
-                            'Max 270 React...',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "\$299,43",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF40BFFF)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: const [
-                              Text(
-                                '\$543.33',
-                                style: TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                  color: Color(0xFF9098B1),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                '24% off',
-                                style: TextStyle(color: Color(0xFFFB7181)),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Container(
-                      width: 145,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              'assets/images/banner.png',
-                              height: 109,
-                              width: 109,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            'FS-Nike Air',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const Text(
-                            'Max 270 React...',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            "\$299,43",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF40BFFF)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: const [
-                              Text(
-                                '\$543.33',
-                                style: TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                  color: Color(0xFF9098B1),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                '24% off',
-                                style: TextStyle(color: Color(0xFFFB7181)),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ));
   }
 }
