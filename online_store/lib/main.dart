@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:online_store/src/ui/detail_screen.dart';
 import 'package:online_store/src/ui/home_screen.dart';
 import 'package:online_store/src/ui/login_screen.dart';
+import 'package:online_store/src/ui/offer_screen.dart';
 import 'package:online_store/src/ui/register_screen.dart';
 
 void main() {
@@ -19,13 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          platform: TargetPlatform.iOS
-        ),
+        theme:
+            ThemeData(primarySwatch: Colors.blue, platform: TargetPlatform.iOS),
         // home: const LoginScreen());
         // home: const RegisterScreen());
 
-        home: const HomeScreen());
+        home: const OfferScreen());
   }
 }
