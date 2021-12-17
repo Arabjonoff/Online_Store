@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:online_store/src/ui/detail_screen.dart';
+import 'package:online_store/src/ui/favorite_screen.dart';
 import 'package:online_store/src/ui/home_screen.dart';
 import 'package:online_store/src/ui/login_screen.dart';
 import 'package:online_store/src/ui/offer_screen.dart';
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
         // home: const LoginScreen());
         // home: const RegisterScreen());
 
-        home: const OfferScreen());
+        home: const HomeScreen());
+    // home: const FavoriteScreen());
+    // home: const OfferScreen());
   }
 }
