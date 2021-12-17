@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          platform: TargetPlatform.iOS
         ),
         // home: const LoginScreen());
         // home: const RegisterScreen());

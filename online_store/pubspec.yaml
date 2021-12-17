@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.0.0
+  carousel_slider: ^4.0.0
+
   
 
 
