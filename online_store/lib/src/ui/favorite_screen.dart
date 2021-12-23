@@ -10,10 +10,15 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SvgPicture.asset(
-          'assets/icons/Left.svg',
-          width: 1,
-          height: 1,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Center(
+            child: SvgPicture.asset(
+              'assets/icons/Left.svg',
+            ),
+          ),
         ),
         title: const Text(
           'Favoriite Product',

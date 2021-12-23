@@ -1,8 +1,15 @@
 // ignore_for_file: unused_import, avoid_unnecessary_containers, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:online_store/src/ui/category_screen.dart';
+import 'package:online_store/src/ui/detail_screen.dart';
+import 'package:online_store/src/ui/expolre_screen.dart';
+import 'package:online_store/src/ui/favorite_screen.dart';
+import 'package:online_store/src/ui/notfication_screen.dart';
+import 'package:online_store/src/ui/offer_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +21,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         title: Row(
           children: [
@@ -43,13 +51,69 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               width: 18,
             ),
-            SvgPicture.asset('assets/icons/love.svg'),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const FavoriteScreen();
+                      },
+                    ),
+                  );
+                },
+                child: SvgPicture.asset('assets/icons/love.svg')),
             const SizedBox(
               width: 18,
             ),
-            SvgPicture.asset('assets/icons/Notification.svg'),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const NotficationScreen();
+                      },
+                    ),
+                  );
+                },
+                child: SvgPicture.asset('assets/icons/Notification.svg')),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset('assets/icons/home.svg'), label: 'home'),
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const ExploreScreen();
+                    },
+                  ),
+                );
+              },
+              child: SvgPicture.asset('assets/icons/group.svg'),
+            ),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('assets/icons/cart.svg'),
+            label: 'School',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('assets/icons/sale.svg'),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('assets/icons/users.svg'),
+            label: 'Settings',
+          ),
+        ],
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -60,93 +124,105 @@ class HomeScreen extends StatelessWidget {
             items: [1, 2, 3, 4, 5].map((i) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Container(
-                    margin: const EdgeInsets.only(left: 16, right: 16),
-                    width: w,
-                    height: 206,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/banner.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(left: 24, top: 32),
-                          width: 212,
-                          height: 72,
-                          child: const Text(
-                            'Super Flash Sale 50% Off',
-                            style: TextStyle(
-                                fontSize: 27,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return OfferScreen();
+                          },
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 133, left: 24),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 41,
-                                height: 41,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    '08',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 41,
-                                height: 41,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    '34',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                width: 41,
-                                height: 41,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    '52',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                              ),
-                            ],
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 16, right: 16),
+                      width: w,
+                      height: 206,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/banner.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 24, top: 32),
+                            width: 212,
+                            height: 72,
+                            child: const Text(
+                              'Super Flash Sale 50% Off',
+                              style: TextStyle(
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
                           ),
-                        )
-                      ],
+                          Container(
+                            margin: const EdgeInsets.only(top: 133, left: 24),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 41,
+                                  height: 41,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '08',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Container(
+                                  width: 41,
+                                  height: 41,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '34',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Container(
+                                  width: 41,
+                                  height: 41,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '52',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -156,18 +232,30 @@ class HomeScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 16, right: 16, top: 48),
             child: Row(
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Category',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ),
-                Spacer(),
-                Text(
-                  'See More',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF40BFFF),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CategoryScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'See More',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF40BFFF),
+                    ),
                   ),
                 ),
               ],
@@ -252,18 +340,30 @@ class HomeScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 16, right: 16, top: 24),
             child: Row(
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Flash Sale',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ),
-                Spacer(),
-                Text(
-                  'See More',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF40BFFF),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const FavoriteScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'See More',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF40BFFF),
+                    ),
                   ),
                 ),
               ],
@@ -276,364 +376,405 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16),
               scrollDirection: Axis.horizontal,
               children: [
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product1.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product1.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 16,
                 ),
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product2.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product2.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 16,
                 ),
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 16,
                 ),
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product4.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product4.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -668,183 +809,203 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16, right: 16),
               scrollDirection: Axis.horizontal,
               children: [
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product4.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                                decoration: TextDecoration.lineThrough,
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product4.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 16,
                 ),
-                Container(
-                  width: 141,
-                  height: 238,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFFEBF0FF),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DetailScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    width: 141,
+                    height: 238,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFEBF0FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 16),
-                        width: 109,
-                        height: 109,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            "assets/images/product.png",
-                            width: 109,
-                            height: 109,
-                            fit: BoxFit.cover,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 16),
+                          width: 109,
+                          height: 109,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          'FS - Nike Air Max 270 React...',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF223263),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 8),
-                        width: 109,
-                        height: 36,
-                        child: const Text(
-                          '\$299,34',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF40BFFF),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '\$534,33',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9098B1),
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/images/product.png",
+                              width: 109,
+                              height: 109,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 8),
-                            width: 42,
-                            height: 15,
-                            child: const Text(
-                              '24% Off',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFFB7181),
-                              ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            'FS - Nike Air Max 270 React...',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF223263),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 8),
+                          width: 109,
+                          height: 36,
+                          child: const Text(
+                            '\$299,34',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF40BFFF),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left: 16),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '\$534,33',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF9098B1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 8),
+                              width: 42,
+                              height: 15,
+                              child: const Text(
+                                '24% Off',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFFFB7181),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -1011,7 +1172,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 8),
+                            margin: const EdgeInsets.only(left: 8),
                             width: 42,
                             height: 15,
                             child: const Text(
@@ -1420,7 +1581,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-         const  SizedBox(
+          const SizedBox(
             height: 24,
           ),
         ],

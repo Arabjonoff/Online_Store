@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
   flutter_svg: ^1.0.0
   carousel_slider: ^4.0.0
+  shared_preferences: ^2.0.11
+
 
   
 

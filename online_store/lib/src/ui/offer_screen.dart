@@ -10,10 +10,21 @@ class OfferScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SvgPicture.asset(
-          'assets/icons/Left.svg',
-          width: 1,
-          height: 1,
+        centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            color: Colors.transparent,
+            child: Center(
+              child: SvgPicture.asset(
+                'assets/icons/Left.svg',
+                width: 24,
+                height: 24,
+              ),
+            ),
+          ),
         ),
         actions: [
           SvgPicture.asset('assets/icons/searchs.svg'),
