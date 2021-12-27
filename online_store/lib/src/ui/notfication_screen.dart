@@ -1,8 +1,29 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_store/src/model/notficationModel.dart';
 import 'package:online_store/src/ui/activiy.dart';
 import 'package:online_store/src/ui/feed_screen.dart';
 import 'package:online_store/src/ui/notficaton_detail_screen.dart';
+
+List<NotficationModel> notfi = [
+  NotficationModel(
+    image: 'assets/icons/sale.svg',
+    name: 'offer',
+    unReadCount: 2,
+  ),
+  NotficationModel(
+    image: 'assets/icons/sale.svg',
+    name: 'offer',
+    unReadCount: 22,
+  ),
+  NotficationModel(
+    image: 'assets/icons/sale.svg',
+    name: 'offer',
+    unReadCount: 10,
+  ),
+];
 
 class NotficationScreen extends StatelessWidget {
   const NotficationScreen({Key? key}) : super(key: key);
@@ -41,15 +62,11 @@ class NotficationScreen extends StatelessWidget {
             color: Colors.black,
           ),
           Expanded(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [
-                // ignore: sized_box_for_whitespace
-                Column(
+            child: ListView.builder(
+              itemCount: notfi.length,
+              itemBuilder: (context, index) {
+                return Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -74,16 +91,16 @@ class NotficationScreen extends StatelessWidget {
                             // ignore: avoid_unnecessary_containers
                             Container(
                               child: SvgPicture.asset(
-                                'assets/icons/sale.svg',
+                                notfi[index].image,
                                 color: const Color(0xFF40BFFF),
                               ),
                             ),
                             const SizedBox(
                               width: 18,
                             ),
-                            const Text(
-                              'Offer',
-                              style: TextStyle(
+                            Text(
+                              notfi[index].name,
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF223263)),
@@ -97,124 +114,10 @@ class NotficationScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(50),
                                 color: const Color(0xFFFB7181),
                               ),
-                              child: const Center(
+                              child: Center(
                                   child: Text(
-                                '2',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const FeedScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                        ),
-                        width: w,
-                        height: 56,
-                        color: Colors.white,
-                        child: Row(
-                          children: [
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: SvgPicture.asset(
-                                'assets/icons/feed.svg',
-                                color: const Color(0xFF40BFFF),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 18,
-                            ),
-                            const Text(
-                              'Feed',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF223263)),
-                            ),
-                            const Spacer(),
-                            // ignore: sized_box_for_whitespace
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: const Color(0xFFFB7181),
-                              ),
-                              child: const Center(
-                                  child: Text(
-                                '3',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const ActiviyScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                        ),
-                        color: Colors.white,
-                        width: w,
-                        height: 56,
-                        child: Row(
-                          children: [
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: SvgPicture.asset(
-                                'assets/icons/Notification.svg',
-                                color: const Color(0xFF40BFFF),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 18,
-                            ),
-                            const Text(
-                              'Acivity',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF223263)),
-                            ),
-                            const Spacer(),
-                            // ignore: sized_box_for_whitespace
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: const Color(0xFFFB7181),
-                              ),
-                              child: const Center(
-                                  child: Text(
-                                '3',
-                                style: TextStyle(color: Colors.white),
+                                notfi[index].unReadCount.toString(),
+                                style: const TextStyle(color: Colors.white),
                               )),
                             )
                           ],
@@ -222,8 +125,8 @@ class NotficationScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
-              ],
+                );
+              },
             ),
           ),
         ],

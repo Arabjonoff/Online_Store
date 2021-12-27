@@ -4,6 +4,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:online_store/src/model/size_model.dart';
+
+List sizes = [
+  SizeModel(size: 1),
+  SizeModel(size: 12),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+  SizeModel(size: 1),
+];
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -130,95 +144,28 @@ class DetailScreen extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(top: 12),
-            height: 48,
-            child: ListView(
+            height: 58,
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                Container(
+              shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              itemCount: sizes.length,
+              itemBuilder: (context, index) {
+                return Container(
                   margin: const EdgeInsets.only(left: 18),
-                  width: 48,
+                  width: 58,
                   height: 48,
                   decoration: BoxDecoration(
                     border: Border.all(color: const Color(0xFFEBF0FF)),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: const Center(
+                  child: Center(
                       child: Text(
-                    '6',
+                    sizes[index].size.toString(),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFEBF0FF)),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                      child: Text(
-                    '6.5',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFF40BFFF)),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                      child: Text(
-                    '7',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFEBF0FF)),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                      child: Text(
-                    '7.5',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFEBF0FF)),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                      child: Text(
-                    '8',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFEBF0FF)),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                      child: Text(
-                    '8.5',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-                ),
-              ],
+                );
+              },
             ),
           ),
           const Padding(

@@ -86,9 +86,10 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         width: 12,
                       ),
-                      const Expanded(
+                      Expanded(
                         child: TextField(
-                          decoration: InputDecoration(
+                          controller: namecontroller,
+                          decoration: const InputDecoration(
                             hintText: "Full Name",
                             border: InputBorder.none,
                           ),
@@ -120,9 +121,10 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         width: 12,
                       ),
-                      const Expanded(
+                      Expanded(
                         child: TextField(
-                          decoration: InputDecoration(
+                          controller: passwordcontroller,
+                          decoration: const InputDecoration(
                             hintText: "Password",
                             border: InputBorder.none,
                           ),
@@ -313,7 +315,7 @@ class _LoginState extends State<Login> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const HomeScreen();
+            return  HomeScreen();
           },
         ),
       );

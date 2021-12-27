@@ -78,19 +78,68 @@ class ExploreScreen extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 16, top: 16),
-            child: const Text('Main Fashion'),
+            child: const Text(
+              'Main Fashion',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-            ),
+            margin: const EdgeInsets.only(left: 16, right: 16),
             width: w,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: [Row()],
+            height: 265,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color: const Color(0xFFEBF0FF),
+                        ),
+                      ),
+                      child: SvgPicture.asset('assets/icons/shirt.svg'),
+                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.only(top: 8),
+                    //   child: const Text(
+                    //     'Main Shirt',
+                    //     style: TextStyle(
+                    //         fontSize: 12,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Color(0xFF9098B1)),
+                    //   ),
+                    // ),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color: const Color(0xFFEBF0FF),
+                        ),
+                      ),
+                      child: SvgPicture.asset('assets/icons/shirt.svg'),
+                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.only(top: 8),
+                    //   child: const Text(
+                    //     'Main Shirt',
+                    //     style: TextStyle(
+                    //         fontSize: 12,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Color(0xFF9098B1)),
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ],
             ),
-          ),
+          )
         ],
       ),
     );
